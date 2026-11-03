@@ -12,7 +12,7 @@ describe('fetchFromApi', () => {
         JSON.stringify({
           url: 'https://example.com/',
           hostname: 'example.com',
-          metrics: { performanceScore: 87, lcpMs: 2100, totalBytes: 1_450_000, requests: 52 },
+          metrics: { performanceScore: 87, lcpMs: 2100, totalBytes: 1_450_000, requests: 52, tbtMs: 188, cls: 0.046 },
           fetchedAt: '2026-11-03T09:30:00.000Z',
         }),
       );
@@ -26,6 +26,8 @@ describe('fetchFromApi', () => {
       lcpMs: 2100,
       totalBytes: 1_450_000,
       requests: 52,
+      tbtMs: 188,
+      cls: 0.046,
     });
   });
 

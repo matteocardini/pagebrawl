@@ -27,6 +27,8 @@ const psiOk = {
     audits: {
       'largest-contentful-paint': { numericValue: 3000 },
       'total-byte-weight': { numericValue: 2_000_000 },
+      'total-blocking-time': { numericValue: 250 },
+      'cumulative-layout-shift': { numericValue: 0.1 },
       'network-requests': { details: { items: [{}, {}, {}] } },
     },
   },
@@ -49,7 +51,7 @@ describe('api/analyze', () => {
     expect(reply.body).toMatchObject({
       url: 'https://example.com/',
       hostname: 'example.com',
-      metrics: { performanceScore: 50, lcpMs: 3000, totalBytes: 2_000_000, requests: 3 },
+      metrics: { performanceScore: 50, lcpMs: 3000, totalBytes: 2_000_000, requests: 3, tbtMs: 250, cls: 0.1 },
     });
     expect(reply.headers['Cache-Control']).toBe('public, s-maxage=3600, stale-while-revalidate=86400');
     const requested = new URL(String(fetchMock.mock.calls[0]?.[0]));

@@ -6,4 +6,6 @@ export const METRIC_LABEL: Record<MetricKey, string> = {
   lcpMs: 'LOAD SPEED (LCP)',
   totalBytes: 'PAGE WEIGHT',
   requests: 'REQUESTS',
+  tbtMs: 'BLOCKING TIME (TBT)',
+  cls: 'LAYOUT SHIFT (CLS)',
 };

@@ -11,5 +11,7 @@ export function formatMegabytes(bytes: number): string {
 export function formatMetric(key: MetricKey, value: number): string {
   if (key === 'lcpMs') return formatSeconds(value);
   if (key === 'totalBytes') return formatMegabytes(value);
+  if (key === 'tbtMs') return `${value} ms`;
+  if (key === 'cls') return String(Number(value.toFixed(3)));
   return String(value);
 }

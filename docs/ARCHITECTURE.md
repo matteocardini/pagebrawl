@@ -122,7 +122,7 @@ Success `200`:
 {
   "url": "https://example.com/",
   "hostname": "example.com",
-  "metrics": { "performanceScore": 87, "lcpMs": 2100, "totalBytes": 1450000, "requests": 52 },
+  "metrics": { "performanceScore": 87, "lcpMs": 2100, "totalBytes": 1450000, "requests": 52, "tbtMs": 180, "cls": 0.046 },
   "fetchedAt": "2026-11-03T09:30:00.000Z"
 }
 ```
@@ -143,6 +143,8 @@ Errors (`{ "error": "<code>", "message": "<human readable>" }`):
   - `audits['largest-contentful-paint'].numericValue` → `lcpMs` (round)
   - `audits['total-byte-weight'].numericValue` → `totalBytes` (round)
   - `audits['network-requests'].details.items.length` → `requests`
+  - `audits['total-blocking-time'].numericValue` → `tbtMs` (round)
+  - `audits['cumulative-layout-shift'].numericValue` → `cls` (round to 3 decimals)
 - Missing field → `analysis_failed`.
 - Validate the URL: only `http:`/`https:`, max 2048 chars; if the user omits the scheme on the client, add `https://`.
   Reject `localhost` and IP-literal hostnames.

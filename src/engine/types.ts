@@ -5,11 +5,21 @@ export type SiteMetrics = {
   lcpMs: number;
   totalBytes: number;
   requests: number;
+  /** Total Blocking Time in ms, lower is better. */
+  tbtMs: number;
+  /** Cumulative Layout Shift (unitless), lower is better. */
+  cls: number;
 };
 
 export type FighterId = 'A' | 'B';
-export type MoveId = 'speed-punch' | 'paint-kick' | 'heavy-slam' | 'request-combo';
-export type MetricKey = 'performanceScore' | 'lcpMs' | 'totalBytes' | 'requests';
+export type MoveId =
+  | 'speed-punch'
+  | 'paint-kick'
+  | 'heavy-slam'
+  | 'request-combo'
+  | 'freeze-ray'
+  | 'shake-quake';
+export type MetricKey = 'performanceScore' | 'lcpMs' | 'totalBytes' | 'requests' | 'tbtMs' | 'cls';
 
 export type Round = {
   index: number;

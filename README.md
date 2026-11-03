@@ -12,7 +12,7 @@ Watch it in retro **2D** or in a low-poly **3D arena**, and switch between them 
 
 ## How a match works
 
-Both sites start with 100 energy. Four rounds, one per metric (data from Google PageSpeed Insights, mobile):
+Both sites start with 100 energy. Six rounds, one per metric (data from Google PageSpeed Insights, mobile):
 
 | Round | Move          | Metric                       | Wins                |
 |-------|---------------|------------------------------|---------------------|
@@ -20,8 +20,12 @@ Both sites start with 100 energy. Four rounds, one per metric (data from Google 
 | 2     | Paint Kick    | Largest Contentful Paint     | lower               |
 | 3     | Heavy Slam    | Total page weight            | lower               |
 | 4     | Request Combo | Number of network requests   | lower               |
+| 5     | Freeze Ray    | Total Blocking Time (TBT)    | lower               |
+| 6     | Shake Quake   | Layout shift (CLS)           | lower               |
 
-The bigger the gap, the harder the hit (up to 35 damage); a gap of 60% or more is a critical hit (×1.25).
+The bigger the gap, the harder the hit (up to 25 damage); a gap of 60% or more is a critical hit (×1.25).
+TBT and CLS sit near zero on good sites, so their gaps are measured against Lighthouse's "good" threshold
+(200 ms and 0.1): 10 ms vs 20 ms of blocking time is a scratch, not a knockout.
 Reach 0 energy and it's a **K.O.** and the match ends on the spot. Otherwise the fighter with more energy wins
 on **decision**; ties go to the higher performance score, and a perfect tie is a draw.
 The full rules and worked examples live in [`docs/GAME_RULES.md`](docs/GAME_RULES.md).

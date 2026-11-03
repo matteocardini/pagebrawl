@@ -19,5 +19,9 @@ describe('formatMetric', () => {
     expect(formatMetric('lcpMs', 1800)).toBe('1.8 s');
     expect(formatMetric('totalBytes', 900_000)).toBe('0.9 MB');
     expect(formatMetric('requests', 38)).toBe('38');
+    expect(formatMetric('tbtMs', 120)).toBe('120 ms');
+    expect(formatMetric('cls', 0.02)).toBe('0.02');
+    expect(formatMetric('cls', 0)).toBe('0');
+    expect(formatMetric('cls', 0.12345)).toBe('0.123');
   });
 });

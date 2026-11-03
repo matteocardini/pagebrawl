@@ -3,10 +3,10 @@ import type { SiteMetrics } from '../engine/types';
 type Fixture = Omit<SiteMetrics, 'url'>;
 
 export const FIXTURES: readonly Fixture[] = [
-  { hostname: 'fast.example', performanceScore: 92, lcpMs: 1800, totalBytes: 900_000, requests: 38 },
-  { hostname: 'slow.example', performanceScore: 41, lcpMs: 5200, totalBytes: 4_800_000, requests: 140 },
-  { hostname: 'average.example', performanceScore: 68, lcpMs: 3100, totalBytes: 2_300_000, requests: 85 },
-  { hostname: 'bloated.example', performanceScore: 55, lcpMs: 4200, totalBytes: 7_500_000, requests: 210 },
+  { hostname: 'fast.example', performanceScore: 92, lcpMs: 1800, totalBytes: 900_000, requests: 38, tbtMs: 120, cls: 0.02 },
+  { hostname: 'slow.example', performanceScore: 41, lcpMs: 5200, totalBytes: 4_800_000, requests: 140, tbtMs: 1400, cls: 0.35 },
+  { hostname: 'average.example', performanceScore: 68, lcpMs: 3100, totalBytes: 2_300_000, requests: 85, tbtMs: 450, cls: 0.12 },
+  { hostname: 'bloated.example', performanceScore: 55, lcpMs: 4200, totalBytes: 7_500_000, requests: 210, tbtMs: 900, cls: 0.25 },
 ];
 
 /** FNV-1a: small, stable string hash (no randomness, same result in every runtime). */

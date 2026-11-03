@@ -5,6 +5,8 @@ export type ApiMetrics = {
   lcpMs: number;
   totalBytes: number;
   requests: number;
+  tbtMs: number;
+  cls: number;
 };
 
 export type ErrorCode = 'invalid_url' | 'rate_limited' | 'analysis_failed' | 'timeout' | 'server_error';
@@ -53,12 +55,18 @@ export function extractMetrics(body: unknown): ApiMetrics | null {
   const score = finiteNumber(lighthouse?.categories?.performance?.score);
   const lcp = finiteNumber(lighthouse?.audits?.['largest-contentful-paint']?.numericValue);
   const bytes = finiteNumber(lighthouse?.audits?.['total-byte-weight']?.numericValue);
+  const tbt = finiteNumber(lighthouse?.audits?.['total-blocking-time']?.numericValue);
+  const cls = finiteNumber(lighthouse?.audits?.['cumulative-layout-shift']?.numericValue);
   const items = lighthouse?.audits?.['network-requests']?.details?.items;
-  if (score === null || lcp === null || bytes === null || !Array.isArray(items)) return null;
+  if (score === null || lcp === null || bytes === null || tbt === null || cls === null || !Array.isArray(items)) {
+    return null;
+  }
   return {
     performanceScore: Math.round(score * 100),
     lcpMs: Math.round(lcp),
     totalBytes: Math.round(bytes),
     requests: items.length,
+    tbtMs: Math.round(tbt),
+    cls: Math.round(cls * 1000) / 1000,
   };
 }

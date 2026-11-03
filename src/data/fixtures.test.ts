@@ -13,7 +13,14 @@ describe('fixtureFor', () => {
 
   it('uses the fixture whose hostname matches', () => {
     const site = fixtureFor('https://slow.example/', 'slow.example');
-    expect(site).toMatchObject({ performanceScore: 41, lcpMs: 5200, totalBytes: 4_800_000, requests: 140 });
+    expect(site).toMatchObject({
+      performanceScore: 41,
+      lcpMs: 5200,
+      totalBytes: 4_800_000,
+      requests: 140,
+      tbtMs: 1400,
+      cls: 0.35,
+    });
   });
 
   it('maps unknown hostnames to a stable fixture, keeping their own name', () => {
