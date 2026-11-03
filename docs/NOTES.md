@@ -11,3 +11,6 @@ Format: date — decision — reason.
 - 2026-11-03 — Changing speed mid-round restarts the current stage timer at the new duration — keeps the timer code to one effect.
 - 2026-11-03 — `fetchMetrics` in real mode throws a friendly "not connected yet" error until M5 — do not fake the integration.
 - 2026-11-03 — Rematch resets to the form with the normalised URLs pre-filled — "keeping the URLs filled in".
+- 2026-11-03 — M3 3D view shows a plain HTML name + energy number per side (no bars yet) and a static camera — M4 adds energy bars, orbit and animations; the numbers make desync checks possible now.
+- 2026-11-03 — The view mode is stored under `pagebrawl:view`; if WebGL is missing the app forces 2D (ignoring a stored `3d`) without overwriting the stored choice.
+- 2026-11-03 — Tests also cover `.tsx` (`ViewToggle.test.tsx`), rendered with `react-dom/server` — avoids a DOM test library.

@@ -1,20 +1,9 @@
 import { MatchControls } from '../../components/MatchControls';
+import { announcement } from '../announcement';
 import type { ViewProps } from '../view-props';
 import { EnergyBar } from './EnergyBar';
 import { Fighter2D } from './Fighter2D';
 import './view-2d.css';
-
-function announcement(playback: ViewProps['playback']): string {
-  const { phase, activeRound, result } = playback;
-  if (phase === 'intro') return 'Fight!';
-  if (phase === 'finished') {
-    return result.winner === 'draw' ? 'Draw.' : `${result.fighters[result.winner].hostname} wins by ${result.finish}.`;
-  }
-  if (!activeRound) return '';
-  if (!activeRound.attacker) return `${activeRound.label}: blocked.`;
-  const name = result.fighters[activeRound.attacker].hostname;
-  return `${activeRound.label}: ${name} hits for ${activeRound.damage}${activeRound.crit ? ', critical' : ''}.`;
-}
 
 export function View2D({ playback, onSkip, onRematch, onSpeedChange }: ViewProps) {
   const { result, phase, activeRound, energy, speed } = playback;

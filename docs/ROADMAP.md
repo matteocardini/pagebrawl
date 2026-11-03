@@ -28,10 +28,10 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] A complete match can be played end-to-end in the browser with mock data
 
 ## M3 — Toggle + empty 3D scene (branch `m3-toggle-3d`)
-- [ ] `ViewToggle` (2D / 3D, `aria-pressed`, persisted in `localStorage` with try/catch)
-- [ ] `View3D` lazy-loaded with `Suspense` fallback; empty arena (floor, grid, fog, lights) and two towers sized by `totalBytes`
-- [ ] Switching views mid-match does **not** restart or desync the match (verify manually and describe how in the summary)
-- [ ] WebGL-unavailable fallback: 3D option disabled with a message, app stays on 2D
+- [x] `ViewToggle` (2D / 3D, `aria-pressed`, persisted in `localStorage` with try/catch)
+- [x] `View3D` lazy-loaded with `Suspense` fallback; empty arena (floor, grid, fog, lights) and two towers sized by `totalBytes`
+- [x] Switching views mid-match does **not** restart or desync the match (verify manually and describe how in the summary)
+- [x] WebGL-unavailable fallback: 3D option disabled with a message, app stays on 2D
 
 ## M4 — 3D arena and animations (branch `m4-arena-3d`)
 - [ ] Attack animation (projectile/pulse) from attacker to defender, hit shake, collapse on KO

@@ -2,10 +2,13 @@ import { ErrorMessage } from './components/ErrorMessage';
 import { LoadingScreen } from './components/LoadingScreen';
 import { MatchScreen } from './components/MatchScreen';
 import { UrlForm } from './components/UrlForm';
+import { ViewToggle } from './components/ViewToggle';
 import { useMatch } from './state/use-match';
+import { useViewMode } from './state/use-view-mode';
 
 export function App() {
   const { state, lastUrls, start, reset } = useMatch();
+  const { mode, setMode, webgl } = useViewMode();
 
   return (
     <main className="app">
@@ -14,10 +17,12 @@ export function App() {
         <p className="app__tagline">Two websites enter. One leaves faster.</p>
       </header>
 
+      {state.status !== 'idle' && <ViewToggle mode={mode} webgl={webgl} onChange={setMode} />}
+
       {state.status === 'idle' && <UrlForm initial={lastUrls} onSubmit={start} />}
       {state.status === 'loading' && <LoadingScreen />}
       {state.status === 'error' && <ErrorMessage message={state.message} onBack={reset} />}
-      {state.status === 'ready' && <MatchScreen result={state.result} onRematch={reset} />}
+      {state.status === 'ready' && <MatchScreen result={state.result} mode={mode} onRematch={reset} />}
     </main>
   );
 }
