@@ -12,7 +12,7 @@
 
 .arena-3d__callout {
   position: absolute;
-  inset: 12% 0 auto;
+  inset: auto 0 5%;
   display: grid;
   justify-items: center;
   pointer-events: none;
@@ -63,7 +63,7 @@
 .bar3d__fill {
   height: 100%;
   /* drains when the hit lands, like the 2D bars */
-  transition: width 700ms steps(14) 350ms;
+  transition: width 700ms steps(14) var(--hit-delay);
 }
 
 .bar3d--a .bar3d__fill {
@@ -78,15 +78,15 @@
   display: grid;
   justify-items: center;
   font-family: var(--font-pixel);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: var(--text);
   text-shadow: 2px 2px 0 var(--bg);
   white-space: nowrap;
-  animation: dmg3d-float 1100ms steps(10) 350ms both;
+  animation: dmg3d-float 1100ms steps(10) var(--hit-delay) both;
 }
 
 .dmg3d--crit {
-  font-size: 1.15rem;
+  font-size: 1.4rem;
   color: var(--danger);
 }
 
@@ -116,4 +116,15 @@
   .bar3d__fill {
     transition: none;
   }
+}
+
+.dmg3d .hit-detail {
+  font-size: 0.65rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.dmg3d .hit-detail--metric {
+  margin-top: 0.3rem;
+  color: var(--cyan);
 }

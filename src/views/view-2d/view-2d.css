@@ -50,7 +50,7 @@
 .energy__fill {
   height: 100%;
   /* drains when the hit lands (350 ms in), same beat as the 3D view */
-  transition: width 700ms steps(14) 350ms;
+  transition: width 700ms steps(14) var(--hit-delay);
 }
 
 .energy--a .energy__fill {
@@ -154,7 +154,7 @@
 }
 
 .fighter__body--hit {
-  animation: hit-shake 450ms steps(6) 350ms, hit-flash 450ms steps(2) 350ms;
+  animation: hit-shake 450ms steps(6) var(--hit-delay), hit-flash 450ms steps(2) var(--hit-delay);
 }
 
 .fighter--ko .fighter__body {
@@ -193,14 +193,15 @@
 
 .damage {
   position: absolute;
-  top: -1.6rem;
+  top: -4.2rem;
+  white-space: nowrap;
   display: grid;
   justify-items: center;
   font-family: var(--font-pixel);
   font-size: 1rem;
   color: var(--text);
   text-shadow: 2px 2px 0 var(--bg);
-  animation: float-up 1100ms steps(10) 350ms both;
+  animation: float-up 1100ms steps(10) var(--hit-delay) both;
 }
 
 .damage--crit {
@@ -241,4 +242,15 @@
   .energy__fill {
     transition: none;
   }
+}
+
+.hit-detail {
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.hit-detail--metric {
+  margin-top: 0.35rem;
+  color: var(--cyan);
 }

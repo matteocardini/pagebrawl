@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type ViewMode = '2d' | '3d';
 
@@ -24,14 +24,30 @@ function readStoredMode(): ViewMode {
   }
 }
 
+let cachedSupport: boolean | null = null;
+
+function webglSupported(): boolean {
+  cachedSupport ??= supportsWebGL();
+  return cachedSupport;
+}
+
+const PROBE_DELAY_MS = 2000;
+
 /**
  * The chosen view lives in the app (above the match), is persisted, and never exceeds what WebGL allows.
- * `needed` is false on the first screen: creating a WebGL context is costly, so it is only probed
- * once the 2D/3D toggle is about to be shown.
+ * Creating a WebGL context is costly, so it is not probed during first load: the toggle starts enabled and
+ * the support is checked shortly after, or right away when a match is about to be shown (`matchActive`).
  */
-export function useViewMode(needed: boolean) {
-  const webgl = useMemo(() => !needed || supportsWebGL(), [needed]);
+export function useViewMode(matchActive: boolean) {
+  const [probed, setProbed] = useState(false);
   const [stored, setStored] = useState<ViewMode>(readStoredMode);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setProbed(true), PROBE_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const webgl = probed || matchActive ? webglSupported() : true;
   const mode: ViewMode = webgl ? stored : '2d';
 
   const setMode = useCallback((next: ViewMode) => {

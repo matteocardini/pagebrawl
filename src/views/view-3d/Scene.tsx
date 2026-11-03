@@ -11,6 +11,12 @@ import { towerHeight } from './tower-height';
 const X = { A: -4, B: 4 } as const;
 const COLOR = { A: '#22d3ee', B: '#ec4899' } as const;
 
+/** Where a pulse leaves or lands: the tower's side facing the other fighter, at about 60% of its height. */
+function endpoint(side: 'A' | 'B', result: PlaybackState['result']) {
+  const direction = side === 'A' ? 1 : -1;
+  return { x: X[side] + direction * 1.1, y: towerHeight(result.fighters[side].totalBytes) * 0.6 };
+}
+
 type Props = {
   playback: PlaybackState;
   reducedMotion: boolean;
@@ -50,12 +56,14 @@ export function Scene({ playback, reducedMotion }: Props) {
           reducedMotion={reducedMotion}
         />
       ))}
-      {activeRound?.attacker && (
+      {activeRound?.attacker && defender && (
         <Projectile
+          key={activeRound.index}
           round={activeRound}
-          fromX={X[activeRound.attacker]}
-          toX={X[defender === 'A' ? 'A' : 'B']}
+          from={endpoint(activeRound.attacker, result)}
+          to={endpoint(defender, result)}
           clock={clock}
+          reducedMotion={reducedMotion}
         />
       )}
     </>

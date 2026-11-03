@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { MathUtils } from 'three';
 import type { Group, MeshStandardMaterial } from 'three';
 import type { FighterId, Round } from '../../engine/types';
+import { HitDetail } from '../HitDetail';
 import { HIT_DELAY_S, SHAKE_S } from '../timing';
 import type { RoundClock } from './round-fx';
 
@@ -81,6 +82,7 @@ export function Fighter3D({ side, name, x, height, color, energy, hit, attacking
           <div key={hit.index} className={hit.crit ? 'dmg3d dmg3d--crit' : 'dmg3d'}>
             -{hit.damage}
             {hit.crit && <small>CRIT!</small>}
+            <HitDetail round={hit} />
           </div>
         </Html>
       )}

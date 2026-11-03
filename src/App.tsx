@@ -31,7 +31,7 @@ export function App() {
         <p className="app__tagline">Two websites enter. One leaves faster.</p>
       </header>
 
-      {state.status !== 'idle' && <ViewToggle mode={mode} webgl={webgl} onChange={setMode} />}
+      <ViewToggle mode={mode} webgl={webgl} onChange={setMode} />
 
       {state.status === 'idle' && <UrlForm initial={lastUrls} onSubmit={start} />}
       {state.status === 'loading' && <LoadingScreen />}

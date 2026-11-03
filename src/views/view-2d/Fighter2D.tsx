@@ -1,4 +1,5 @@
 import type { FighterId, Round } from '../../engine/types';
+import { HitDetail } from '../HitDetail';
 
 type Props = {
   side: FighterId;
@@ -35,6 +36,7 @@ export function Fighter2D({ side, hit, attacking, knockedOut }: Props) {
         <div key={`dmg-${hit.index}`} className={hit.crit ? 'damage damage--crit' : 'damage'}>
           -{hit.damage}
           {hit.crit && <small>CRIT!</small>}
+          <HitDetail round={hit} />
         </div>
       )}
     </div>
