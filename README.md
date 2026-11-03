@@ -17,9 +17,10 @@ heavyweight champion.
 
 ## Live demo
 
-<!-- TODO: add the production URL here, e.g. https://page-brawl.vercel.app -->
+**[pagebrawl.vercel.app](https://pagebrawl.vercel.app)**
 
-Until it is deployed, run it locally: it takes a minute and needs no API key ([see below](#run-it-locally)).
+Real analyses take a few seconds up to under a minute. Prefer to try it offline? Run it locally in a minute with no
+API key ([see below](#run-it-locally)).
 
 ## Features
 
@@ -180,8 +181,8 @@ More detail: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) (structure, API cont
    `VITE_USE_MOCK` unset (or `false`) in production: only the exact value `true` switches to fake data.
 3. Deploy. `vercel.json` sets the `/api/analyze` function to a 60 s `maxDuration`. If your plan caps it lower,
    lower it too (the function itself gives up after 55 s).
-4. In `index.html`, replace the placeholder domain `page-brawl.vercel.app` (`og:url`, `og:image`,
-   `twitter:image`) with your real one so link previews work.
+4. In `index.html`, set your real domain in `og:url`, `og:image` and `twitter:image` (they point to
+   `pagebrawl.vercel.app`) so link previews work.
 
 ## Accessibility and motion
 

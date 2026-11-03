@@ -3,7 +3,7 @@ import type { FighterId, MatchResult, MetricKey } from '../engine/types';
 import { buildChallengeLink } from '../state/challenge-link';
 import { copyText, shareLink } from '../state/share';
 import type { ShareOutcome } from '../state/share';
-import { formatMegabytes, formatMetric, formatSeconds } from './format';
+import { formatBytes, formatMetric, formatSeconds } from './format';
 import './result-card.css';
 
 type Row = { key: MetricKey; label: string; format: (value: number) => string };
@@ -11,7 +11,7 @@ type Row = { key: MetricKey; label: string; format: (value: number) => string };
 const ROWS: readonly Row[] = [
   { key: 'performanceScore', label: 'Score', format: String },
   { key: 'lcpMs', label: 'LCP', format: formatSeconds },
-  { key: 'totalBytes', label: 'Weight', format: formatMegabytes },
+  { key: 'totalBytes', label: 'Weight', format: formatBytes },
   { key: 'requests', label: 'Requests', format: String },
   { key: 'tbtMs', label: 'Blocking', format: (value) => formatMetric('tbtMs', value) },
   { key: 'cls', label: 'Layout shift', format: (value) => formatMetric('cls', value) },
