@@ -10,8 +10,6 @@ heavyweight champion.
 
 [Live demo](#live-demo) · [How a match works](#how-a-match-works) · [Run it locally](#run-it-locally) · [Deploy](#deploy-vercel)
 
-<!-- TODO: add a GIF or short video of a match here, e.g. ![A Page Brawl match](docs/page-brawl.gif) -->
-
 <img src="docs/img/fight-2d.png" alt="2D view: fast.example hits slow.example with a Speed Punch" width="49%">
 <img src="docs/img/fight-3d.png" alt="3D view: a glowing pulse hits the pink tower" width="49%">
 
