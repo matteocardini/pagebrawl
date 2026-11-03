@@ -57,8 +57,8 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] Favicon, `<title>`, meta description, `lang="en"`
 - [x] Lighthouse mobile on the production build: performance ≥ 90 (2D first load), accessibility ≥ 95
 - [x] README finished: tagline, GIF/video placeholder, live URL placeholder, rules summary, local setup, deploy, credits, license
-- [ ] Deploy instructions for Vercel verified (env var `PSI_API_KEY`), project builds from a clean clone
-- [ ] Final pass: remove dead code, check `.env` is not tracked, tag `v1.0.0`
+- [x] Deploy instructions for Vercel verified (env var `PSI_API_KEY`), project builds from a clean clone (clean-clone `npm ci` + build verified locally; the Vercel deploy itself is the owner's step)
+- [x] Final pass: remove dead code, check `.env` is not tracked, tag `v1.0.0` (tag is local, not pushed)
 
 ## Stretch (only if asked)
 - Sound effects with a mute toggle (off by default)
