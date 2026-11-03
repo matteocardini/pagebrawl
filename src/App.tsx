@@ -13,7 +13,7 @@ export function App() {
   // a shared link (?a=...&b=...) pre-fills the form and starts the match
   const [challenge] = useState(() => parseChallengeParams(window.location.search));
   const { state, lastUrls, start, reset } = useMatch(challenge ?? undefined);
-  const { mode, setMode, webgl } = useViewMode();
+  const { mode, setMode, webgl } = useViewMode(state.status !== 'idle');
   const autostarted = useRef(false);
 
   useEffect(() => {

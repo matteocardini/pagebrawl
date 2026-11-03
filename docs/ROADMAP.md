@@ -54,9 +54,9 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] "Share" button using the Web Share API when available, clipboard fallback
 
 ## M7 — Ship (branch `m7-ship`)
-- [ ] Favicon, `<title>`, meta description, `lang="en"`
-- [ ] Lighthouse mobile on the production build: performance ≥ 90 (2D first load), accessibility ≥ 95
-- [ ] README finished: tagline, GIF/video placeholder, live URL placeholder, rules summary, local setup, deploy, credits, license
+- [x] Favicon, `<title>`, meta description, `lang="en"`
+- [x] Lighthouse mobile on the production build: performance ≥ 90 (2D first load), accessibility ≥ 95
+- [x] README finished: tagline, GIF/video placeholder, live URL placeholder, rules summary, local setup, deploy, credits, license
 - [ ] Deploy instructions for Vercel verified (env var `PSI_API_KEY`), project builds from a clean clone
 - [ ] Final pass: remove dead code, check `.env` is not tracked, tag `v1.0.0`
 

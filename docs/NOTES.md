@@ -26,3 +26,5 @@ Format: date — decision — reason.
 - 2026-11-03 — "Copy challenge link" falls back to showing the link in a read-only field when the clipboard is denied; "Share" uses `navigator.share` and falls back to copying.
 - 2026-11-03 — A challenge link only auto-starts if both URLs validate; otherwise the form is just pre-filled.
 - 2026-11-03 — OG image `public/og-image.png` was rendered once with headless Chrome (Press Start 2P); `og:url`/`og:image` use the placeholder domain `page-brawl.vercel.app` until the real domain is known (TODO in `index.html`).
+- 2026-11-03 — The WebGL support probe now runs only when the 2D/3D toggle is about to show (`useViewMode(needed)`) and releases its context — creating a context on first load cost ~2.8 s of blocking time in Lighthouse (performance 71 → 100).
+- 2026-11-03 — Added `public/robots.txt` (allow all) — without it the SPA fallback served HTML for /robots.txt and Lighthouse SEO flagged it.
