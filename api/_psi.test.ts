@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { extractMetrics, parseTargetUrl } from './_psi';
+import { extractMetrics, parseTargetUrl } from './_psi.js';
 
 const good = {
   lighthouseResult: {

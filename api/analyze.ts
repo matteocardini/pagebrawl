@@ -1,7 +1,7 @@
 // Vercel serverless function: PageSpeed Insights proxy. One URL per call.
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { ERROR_STATUS, extractMetrics, parseTargetUrl } from './_psi';
-import type { ErrorCode } from './_psi';
+import { ERROR_STATUS, extractMetrics, parseTargetUrl } from './_psi.js';
+import type { ErrorCode } from './_psi.js';
 
 const PSI_ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
 // Below the 60 s function limit so we can answer with a proper `timeout` error.
