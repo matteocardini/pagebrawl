@@ -37,9 +37,20 @@ By default the app runs in **mock mode** (fake sites, no API key needed).
 
 ### Using real data
 
-1. Create a PageSpeed Insights API key in the Google Cloud console.
-2. Put it in `.env.local` as `PSI_API_KEY=...` and set `VITE_USE_MOCK=false`.
-3. Run the app with `npx vercel dev` so the `/api/analyze` function is available.
+1. Create a PageSpeed Insights API key: in the [Google Cloud console](https://console.cloud.google.com/), create or pick a
+   project, enable the **PageSpeed Insights API**, then create an API key under *APIs & Services → Credentials*.
+2. Put it in `.env.local` (never commit it):
+   ```
+   PSI_API_KEY=your-key
+   VITE_USE_MOCK=false
+   ```
+3. Run the app with the Vercel CLI so the `/api/analyze` function is served next to the frontend:
+   ```bash
+   npx vercel dev
+   ```
+   (`npm run dev` only serves the frontend, so use it with `VITE_USE_MOCK=true`.)
+
+A real analysis takes 10–30 seconds. The key only ever lives on the server; the browser calls `/api/analyze?url=...`.
 
 ## Tech
 

@@ -291,3 +291,7 @@
     animation: none;
   }
 }
+
+.loading__slow {
+  color: var(--cyan);
+}

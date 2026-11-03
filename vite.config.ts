@@ -9,7 +9,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     passWithNoTests: true,
-    include: ['src/**/*.test.{ts,tsx}'],
+    include: ['src/**/*.test.{ts,tsx}', 'api/**/*.test.ts'],
     coverage: {
       provider: 'v8',
       include: ['src/engine/run-match.ts'],

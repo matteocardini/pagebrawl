@@ -41,11 +41,11 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] The same match plays identically in 2D and 3D (same timing, same outcome)
 
 ## M5 — Real data (branch `m5-real-data`)
-- [ ] `api/analyze.ts` implementing the contract in `docs/ARCHITECTURE.md` (validation, error codes, cache headers)
-- [ ] `fetch-metrics.ts` real mode with friendly error messages; mock mode stays available via `VITE_USE_MOCK=true`
-- [ ] Loading screen tolerates 10–30 s analyses (progress animation, no frozen UI), with a "taking longer than usual" message after 20 s
-- [ ] README explains how to get a PageSpeed API key and run locally with `vercel dev`
-- [ ] Ask the owner for `PSI_API_KEY` if it is not available; do not fake the integration
+- [x] `api/analyze.ts` implementing the contract in `docs/ARCHITECTURE.md` (validation, error codes, cache headers)
+- [x] `fetch-metrics.ts` real mode with friendly error messages; mock mode stays available via `VITE_USE_MOCK=true`
+- [x] Loading screen tolerates 10–30 s analyses (progress animation, no frozen UI), with a "taking longer than usual" message after 20 s
+- [x] README explains how to get a PageSpeed API key and run locally with `vercel dev`
+- [ ] (pending the key; not verified against the real API) Ask the owner for `PSI_API_KEY` if it is not available; do not fake the integration
 
 ## M6 — Share screen (branch `m6-share`)
 - [ ] Final result card: winner, both fighters' key metrics, finish type (KO/decision/draw), designed to look good in a screenshot

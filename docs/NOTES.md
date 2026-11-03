@@ -19,3 +19,6 @@ Format: date — decision — reason.
 - 2026-11-03 — 3D animation timing is view-local (a clock reset on each new `activeRound`, scaled by `speed`) — `PlaybackState` carries no elapsed time; the hit lands 350 ms into a round in both views (`src/views/timing.ts`; the 2D CSS uses the same 350 ms delay, also applied to the energy bar drain in both views).
 - 2026-11-03 — Switching view mid-round replays that round's attack animation from its start in the new view; the match state (energy, round, outcome) is unaffected.
 - 2026-11-03 — Under reduced motion the 3D view skips hit shake, flash and camera sway (projectile and collapse still show) and the CSS damage text/bars appear without animation.
+- 2026-11-03 — `api/_psi.ts` holds the pure API helpers (underscore = not a Vercel route) and the API tests run in Vitest (`api/**/*.test.ts`) — keeps validation and metric extraction testable without a network.
+- 2026-11-03 — PSI 401/403 map to `server_error` (our key problem), other non-OK statuses to `analysis_failed`; the PSI call times out at 55 s so the function can answer `timeout` before the 60 s limit.
+- 2026-11-03 — M5 was written and unit-tested against simulated PSI responses only; no `PSI_API_KEY` was available, so the live Google call is unverified.
