@@ -13,10 +13,10 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [ ] First commit pushed to `main` (committed locally; push left to the owner)
 
 ## M1 — Engine (branch `m1-engine`)
-- [ ] `src/engine/types.ts`, `constants.ts`, `run-match.ts` implementing `docs/GAME_RULES.md` exactly
-- [ ] Unit tests: worked examples 1, 2, 3 and 4 from `docs/GAME_RULES.md` (example 4 checks that a KO ends the match early: only 3 rounds in the result); a single block round mixed with normal rounds; the `max = 0` case; a tie-break on `performanceScore`; determinism (same input twice → deep-equal output)
-- [ ] 100% of branches in `run-match.ts` covered
-- [ ] `src/data/fixtures.ts` with the four fixtures and the stable-hash mapping from hostname
+- [x] `src/engine/types.ts`, `constants.ts`, `run-match.ts` implementing `docs/GAME_RULES.md` exactly
+- [x] Unit tests: worked examples 1, 2, 3 and 4 from `docs/GAME_RULES.md` (example 4 checks that a KO ends the match early: only 3 rounds in the result); a single block round mixed with normal rounds; the `max = 0` case; a tie-break on `performanceScore`; determinism (same input twice → deep-equal output)
+- [x] 100% of branches in `run-match.ts` covered
+- [x] `src/data/fixtures.ts` with the four fixtures and the stable-hash mapping from hostname
 
 ## M2 — 2D view (branch `m2-view-2d`)
 - [ ] `use-match.ts` and `use-playback.ts` as described in `docs/ARCHITECTURE.md`
