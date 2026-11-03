@@ -34,11 +34,11 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] WebGL-unavailable fallback: 3D option disabled with a message, app stays on 2D
 
 ## M4 — 3D arena and animations (branch `m4-arena-3d`)
-- [ ] Attack animation (projectile/pulse) from attacker to defender, hit shake, collapse on KO
-- [ ] Energy bars visible in 3D (drei `Html` or 3D meshes), synced with `PlaybackState.energy`
-- [ ] Idle camera orbit, fixed framing during rounds, damage/crit text in the scene or overlay
-- [ ] Steady 60 fps on a mid-range laptop; `dpr={[1, 1.5]}`; no console warnings
-- [ ] The same match plays identically in 2D and 3D (same timing, same outcome)
+- [x] Attack animation (projectile/pulse) from attacker to defender, hit shake, collapse on KO
+- [x] Energy bars visible in 3D (drei `Html` or 3D meshes), synced with `PlaybackState.energy`
+- [x] Idle camera orbit, fixed framing during rounds, damage/crit text in the scene or overlay
+- [x] Steady 60 fps on a mid-range laptop; `dpr={[1, 1.5]}`; no console warnings
+- [x] The same match plays identically in 2D and 3D (same timing, same outcome)
 
 ## M5 — Real data (branch `m5-real-data`)
 - [ ] `api/analyze.ts` implementing the contract in `docs/ARCHITECTURE.md` (validation, error codes, cache headers)

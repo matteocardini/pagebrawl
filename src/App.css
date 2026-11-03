@@ -257,3 +257,37 @@
   font-size: 0.85rem;
   color: var(--muted);
 }
+
+/* round callout shared by both views */
+.callout {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: clamp(0.7rem, 3.2vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--text);
+  animation: callout-pop 300ms steps(4);
+}
+
+.callout--fight {
+  font-size: clamp(1.2rem, 6vw, 2.2rem);
+  color: var(--cyan);
+}
+
+.callout--ko {
+  font-size: clamp(1.4rem, 8vw, 4rem);
+  color: var(--danger);
+  text-shadow: 4px 4px 0 var(--bg-2);
+}
+
+@keyframes callout-pop {
+  from {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callout {
+    animation: none;
+  }
+}

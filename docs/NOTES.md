@@ -14,3 +14,8 @@ Format: date — decision — reason.
 - 2026-11-03 — M3 3D view shows a plain HTML name + energy number per side (no bars yet) and a static camera — M4 adds energy bars, orbit and animations; the numbers make desync checks possible now.
 - 2026-11-03 — The view mode is stored under `pagebrawl:view`; if WebGL is missing the app forces 2D (ignoring a stored `3d`) without overwriting the stored choice.
 - 2026-11-03 — Tests also cover `.tsx` (`ViewToggle.test.tsx`), rendered with `react-dom/server` — avoids a DOM test library.
+- 2026-11-03 — Pinned `three@0.180` / `@types/three@0.180` — fiber 8 with newer three logged a `THREE.Clock` deprecation warning; the milestone requires no console warnings.
+- 2026-11-03 — M4 work was done directly on `main` (owner request), after fast-forward merging m1–m3.
+- 2026-11-03 — 3D animation timing is view-local (a clock reset on each new `activeRound`, scaled by `speed`) — `PlaybackState` carries no elapsed time; the hit lands 350 ms into a round in both views (`src/views/timing.ts`; the 2D CSS uses the same 350 ms delay, also applied to the energy bar drain in both views).
+- 2026-11-03 — Switching view mid-round replays that round's attack animation from its start in the new view; the match state (energy, round, outcome) is unaffected.
+- 2026-11-03 — Under reduced motion the 3D view skips hit shake, flash and camera sway (projectile and collapse still show) and the CSS damage text/bars appear without animation.
