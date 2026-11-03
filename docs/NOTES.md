@@ -21,4 +21,4 @@ Format: date — decision — reason.
 - 2026-11-03 — Under reduced motion the 3D view skips hit shake, flash and camera sway (projectile and collapse still show) and the CSS damage text/bars appear without animation.
 - 2026-11-03 — `api/_psi.ts` holds the pure API helpers (underscore = not a Vercel route) and the API tests run in Vitest (`api/**/*.test.ts`) — keeps validation and metric extraction testable without a network.
 - 2026-11-03 — PSI 401/403 map to `server_error` (our key problem), other non-OK statuses to `analysis_failed`; the PSI call times out at 55 s so the function can answer `timeout` before the 60 s limit.
-- 2026-11-03 — M5 was written and unit-tested against simulated PSI responses only; no `PSI_API_KEY` was available, so the live Google call is unverified.
+- 2026-11-03 — M5 was first tested with simulated PSI responses only; once the owner added `PSI_API_KEY`, the handler was run for real: example.com → 200 (8 s), bbc.com → 200 (23 s), unknown domain → 502 `analysis_failed`, IP url → 400. `vercel dev` end-to-end (browser) was not run: it needs a Vercel login/project link.
