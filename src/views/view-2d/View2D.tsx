@@ -1,4 +1,5 @@
 import { MatchControls } from '../../components/MatchControls';
+import { ResultCard } from '../../components/ResultCard';
 import { announcement } from '../announcement';
 import type { ViewProps } from '../view-props';
 import { EnergyBar } from './EnergyBar';
@@ -43,14 +44,7 @@ export function View2D({ playback, onSkip, onRematch, onSpeedChange }: ViewProps
         />
       </div>
 
-      {finished && (
-        <div className="verdict">
-          <p className="verdict__winner">
-            {result.winner === 'draw' ? 'DRAW' : `${result.fighters[result.winner].hostname} WINS`}
-          </p>
-          <p className="verdict__finish">{result.finish === 'draw' ? 'Dead even' : `by ${result.finish}`}</p>
-        </div>
-      )}
+      {finished && <ResultCard result={result} />}
 
       <MatchControls
         finished={finished}

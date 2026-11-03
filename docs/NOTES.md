@@ -22,3 +22,7 @@ Format: date — decision — reason.
 - 2026-11-03 — `api/_psi.ts` holds the pure API helpers (underscore = not a Vercel route) and the API tests run in Vitest (`api/**/*.test.ts`) — keeps validation and metric extraction testable without a network.
 - 2026-11-03 — PSI 401/403 map to `server_error` (our key problem), other non-OK statuses to `analysis_failed`; the PSI call times out at 55 s so the function can answer `timeout` before the 60 s limit.
 - 2026-11-03 — M5 was first tested with simulated PSI responses only; once the owner added `PSI_API_KEY`, the handler was run for real: example.com → 200 (8 s), bbc.com → 200 (23 s), unknown domain → 502 `analysis_failed`, IP url → 400. `vercel dev` end-to-end (browser) was not run: it needs a Vercel login/project link.
+- 2026-11-03 — The 2D/3D views render the shared `ResultCard` in place of their own winner banners — one screenshot-friendly result for both views.
+- 2026-11-03 — "Copy challenge link" falls back to showing the link in a read-only field when the clipboard is denied; "Share" uses `navigator.share` and falls back to copying.
+- 2026-11-03 — A challenge link only auto-starts if both URLs validate; otherwise the form is just pre-filled.
+- 2026-11-03 — OG image `public/og-image.png` was rendered once with headless Chrome (Press Start 2P); `og:url`/`og:image` use the placeholder domain `page-brawl.vercel.app` until the real domain is known (TODO in `index.html`).

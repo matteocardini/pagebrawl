@@ -1,14 +1,28 @@
+import { useEffect, useRef, useState } from 'react';
 import { ErrorMessage } from './components/ErrorMessage';
 import { LoadingScreen } from './components/LoadingScreen';
 import { MatchScreen } from './components/MatchScreen';
 import { UrlForm } from './components/UrlForm';
 import { ViewToggle } from './components/ViewToggle';
+import { normalizeUrl } from './data/normalize-url';
+import { parseChallengeParams } from './state/challenge-link';
 import { useMatch } from './state/use-match';
 import { useViewMode } from './state/use-view-mode';
 
 export function App() {
-  const { state, lastUrls, start, reset } = useMatch();
+  // a shared link (?a=...&b=...) pre-fills the form and starts the match
+  const [challenge] = useState(() => parseChallengeParams(window.location.search));
+  const { state, lastUrls, start, reset } = useMatch(challenge ?? undefined);
   const { mode, setMode, webgl } = useViewMode();
+  const autostarted = useRef(false);
+
+  useEffect(() => {
+    if (!challenge || autostarted.current) return;
+    autostarted.current = true;
+    const a = normalizeUrl(challenge.a);
+    const b = normalizeUrl(challenge.b);
+    if (a.ok && b.ok) void start({ a: a.url, b: b.url });
+  }, [challenge, start]);
 
   return (
     <main className="app">

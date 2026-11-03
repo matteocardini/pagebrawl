@@ -1,5 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { MatchControls } from '../../components/MatchControls';
+import { ResultCard } from '../../components/ResultCard';
 import { announcement } from '../announcement';
 import { usePrefersReducedMotion } from '../use-reduced-motion';
 import type { ViewProps } from '../view-props';
@@ -28,13 +29,7 @@ export function View3D({ playback, onSkip, onRematch, onSpeedChange }: ViewProps
         </div>
       </div>
 
-      {finished && (
-        <p className="arena-3d__verdict">
-          {result.winner === 'draw'
-            ? 'DRAW'
-            : `${result.fighters[result.winner].hostname} WINS${result.finish === 'KO' ? ' BY K.O.' : ''}`}
-        </p>
-      )}
+      {finished && <ResultCard result={result} />}
 
       <MatchControls
         finished={finished}

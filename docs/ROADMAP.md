@@ -48,10 +48,10 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] Ask the owner for `PSI_API_KEY` if it is not available; do not fake the integration
 
 ## M6 — Share screen (branch `m6-share`)
-- [ ] Final result card: winner, both fighters' key metrics, finish type (KO/decision/draw), designed to look good in a screenshot
-- [ ] "Copy challenge link": URL with `?a=<url>&b=<url>` that pre-fills the form and starts the match when opened
-- [ ] Static Open Graph image and meta tags in `index.html` (title, description, `og:image`); dynamic OG image is a stretch goal, do not start it unless asked
-- [ ] "Share" button using the Web Share API when available, clipboard fallback
+- [x] Final result card: winner, both fighters' key metrics, finish type (KO/decision/draw), designed to look good in a screenshot
+- [x] "Copy challenge link": URL with `?a=<url>&b=<url>` that pre-fills the form and starts the match when opened
+- [x] Static Open Graph image and meta tags in `index.html` (title, description, `og:image`); dynamic OG image is a stretch goal, do not start it unless asked
+- [x] "Share" button using the Web Share API when available, clipboard fallback
 
 ## M7 — Ship (branch `m7-ship`)
 - [ ] Favicon, `<title>`, meta description, `lang="en"`

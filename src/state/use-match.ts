@@ -12,9 +12,9 @@ export type MatchState =
   | { status: 'error'; urls: Urls; message: string };
 
 /** Orchestrates input → loading → result. Playback of the result lives in usePlayback. */
-export function useMatch() {
+export function useMatch(initialUrls: Urls = { a: '', b: '' }) {
   const [state, setState] = useState<MatchState>({ status: 'idle' });
-  const [lastUrls, setLastUrls] = useState<Urls>({ a: '', b: '' });
+  const [lastUrls, setLastUrls] = useState<Urls>(initialUrls);
   const latestRun = useRef(0);
 
   const start = useCallback(async (urls: Urls) => {

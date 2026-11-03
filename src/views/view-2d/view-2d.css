@@ -226,33 +226,6 @@
   }
 }
 
-.verdict {
-  display: grid;
-  gap: 0.6rem;
-  justify-items: center;
-  padding: 1.25rem 1rem;
-  text-align: center;
-  background: rgb(19 16 51 / 0.7);
-  border: 3px solid var(--violet);
-}
-
-.verdict__winner {
-  margin: 0;
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  font-family: var(--font-pixel);
-  font-size: clamp(0.8rem, 3.5vw, 1.2rem);
-  line-height: 1.6;
-  color: var(--cyan);
-}
-
-.verdict__finish {
-  margin: 0;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .fighter--attacking .fighter__body,
   .fighter__body--hit,
