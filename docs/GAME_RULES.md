@@ -43,17 +43,19 @@ There are always **6 rounds**, in this fixed order. Each round is one "move" bas
 | 5 | `freeze-ray`    | Freeze Ray      | `tbtMs`            | lower value wins    | 200   |
 | 6 | `shake-quake`   | Shake Quake     | `cls`              | lower value wins    | 0.1   |
 
-The **floor** is the metric's Lighthouse "good" threshold. It keeps tiny absolute differences on metrics that sit
-near zero (TBT, CLS) from counting as huge relative gaps: 10 ms vs 20 ms of blocking time is not a 50% advantage.
+The **floor** is the metric's Lighthouse "good" threshold. Before two values are compared, each is raised to the
+floor: anything at or under it counts as *equal to the floor*. It keeps tiny absolute differences on metrics that sit
+near zero (TBT, CLS) from counting as huge relative gaps: 0 ms vs 202 ms of blocking time is not a 100% advantage,
+and 10 ms vs 20 ms is not even a hit, because both are "good". A floor of 0 changes nothing.
 
 ## Round resolution
 
 For each round, with metric values `x` (fighter A) and `y` (fighter B):
 
-1. If `x === y` → **block**: `attacker = null`, `damage = 0`, `crit = false`. No energy changes.
+1. Let `cx = max(x, floor)` and `cy = max(y, floor)` (the compared values; with floor 0 they are `x` and `y`).
+   If `cx === cy` → **block**: `attacker = null`, `damage = 0`, `crit = false`. No energy changes.
 2. Otherwise the round winner is the **attacker**; the other fighter is the **defender**.
-3. Advantage: `a = |x − y| / max(x, y, floor)`, with the round's floor from the table. If that denominator is 0,
-   treat as a block (step 1).
+3. Advantage: `a = |cx − cy| / max(cx, cy)`. (`max(cx, cy)` is never 0 here: if both were 0 the round was a block.)
 4. `raw = a × MAX_DAMAGE`. If `a ≥ CRIT_THRESHOLD` → `crit = true` and `raw = raw × CRIT_MULTIPLIER`.
 5. `damage = max(MIN_DAMAGE, Math.round(raw))`.
 6. Defender energy = `max(0, energy − damage)`. The reported `damage` is the computed value, even if
@@ -109,7 +111,7 @@ B = `slow.example`: score 41, LCP 5200 ms, 4 800 000 bytes, 140 requests, TBT 14
 | 2     | A      | 0.6538 | yes  | 20     | 100 / 66             |
 | 3     | A      | 0.8125 | yes  | 25     | 100 / 41             |
 | 4     | A      | 0.7286 | yes  | 23     | 100 / 18             |
-| 5     | A      | 0.9143 | yes  | 29     | 100 / 0              |
+| 5     | A      | 0.8571 | yes  | 27     | 100 / 0              |
 
 Result: `winner = 'A'`, `finish = 'KO'`, 5 rounds (round 6 is not played), B at 0 energy.
 
@@ -144,9 +146,13 @@ so three rounds can never reach 100.)
 
 ## Worked example 5 — the floor (use as a unit test)
 
-A has TBT 10 ms, B has 20 ms: `a = 10 / max(10, 20, 200) = 0.05` → raw 1.25 → minimum damage 3, no crit.
-Without the floor it would be `a = 0.5` and 13 damage.
-A has CLS 0, B has 0.05: `a = 0.05 / max(0, 0.05, 0.1) = 0.5` → raw 12.5 → damage 13, no crit.
+All values are compared after being raised to the floor (200 ms for TBT, 0.1 for CLS):
+
+- TBT 10 ms vs 20 ms: both become 200 → **block** (both are "good").
+- TBT 0 ms vs 202 ms: 200 vs 202 → `a = 2 / 202 = 0.0099` → raw 0.25 → minimum damage 3, no crit.
+- TBT 0 ms vs 2000 ms: 200 vs 2000 → `a = 0.9` → critical → damage 28.
+- CLS 0.05 vs 0.15: 0.1 vs 0.15 → `a = 0.05 / 0.15 = 0.3333` → raw 8.33 → damage 8, no crit.
+- CLS 0 vs 0.5: 0.1 vs 0.5 → `a = 0.8` → critical → damage 25.
 
 ## Fixtures for mock mode (`src/data/fixtures.ts`)
 

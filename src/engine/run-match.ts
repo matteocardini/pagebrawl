@@ -32,9 +32,11 @@ function resolveRound(
     valueA: x,
     valueB: y,
   };
-  const scale = Math.max(x, y, definition.floor);
+  // anything at or under the floor counts as equal to the floor (floor 0 leaves the values untouched)
+  const cx = Math.max(x, definition.floor);
+  const cy = Math.max(y, definition.floor);
 
-  if (x === y || scale === 0) {
+  if (cx === cy) {
     return { ...base, attacker: null, damage: 0, crit: false, energyAfter: { ...energy } };
   }
 
@@ -42,7 +44,7 @@ function resolveRound(
   const attacker: FighterId = aWins ? 'A' : 'B';
   const defender = otherFighter(attacker);
 
-  const advantage = Math.abs(x - y) / scale;
+  const advantage = Math.abs(cx - cy) / Math.max(cx, cy);
   const crit = advantage >= CRIT_THRESHOLD;
   const raw = advantage * MAX_DAMAGE * (crit ? CRIT_MULTIPLIER : 1);
   const damage = Math.max(MIN_DAMAGE, Math.round(raw));

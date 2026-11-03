@@ -34,7 +34,7 @@ describe('runMatch', () => {
   it('example 1: A knocks out B in round 5 and round 6 is not played', () => {
     const result = runMatch(fast, slow);
     expect(result.rounds).toHaveLength(5);
-    expect(result.rounds.map((r) => r.damage)).toEqual([14, 20, 25, 23, 29]);
+    expect(result.rounds.map((r) => r.damage)).toEqual([14, 20, 25, 23, 27]);
     expect(result.rounds.map((r) => r.crit)).toEqual([false, true, true, true, true]);
     expect(result.rounds.map((r) => r.energyAfter)).toEqual([
       { A: 100, B: 86 },
@@ -91,20 +91,28 @@ describe('runMatch', () => {
     expect(result.finish).toBe('KO');
   });
 
-  it('example 5: the floor tames tiny differences on TBT and CLS', () => {
-    const base = site('a.example', 80, 2000, 1_000_000, 50, 10, 0);
-    const tbt = runMatch(base, { ...base, hostname: 'b.example', tbtMs: 20 }).rounds[4];
-    expect(tbt).toMatchObject({ moveId: 'freeze-ray', attacker: 'A', damage: 3, crit: false });
-    const cls = runMatch(base, { ...base, hostname: 'b.example', cls: 0.05 }).rounds[5];
-    expect(cls).toMatchObject({ moveId: 'shake-quake', attacker: 'A', damage: 13, crit: false });
+  it('example 5: values under the floor count as equal to the floor', () => {
+    const base = site('a.example', 80, 2000, 1_000_000, 50, 0, 0);
+    const other = (o: Partial<SiteMetrics>) => ({ ...base, hostname: 'b.example', ...o });
+    // both "good" → block
+    expect(runMatch({ ...base, tbtMs: 10 }, other({ tbtMs: 20 })).rounds[4]).toMatchObject({ attacker: null, damage: 0 });
+    expect(runMatch({ ...base, cls: 0.05 }, other({ cls: 0.09 })).rounds[5]).toMatchObject({ attacker: null, damage: 0 });
+    // 0 ms vs just over the threshold is a scratch, not a knockout
+    expect(runMatch(base, other({ tbtMs: 202 })).rounds[4]).toMatchObject({ attacker: 'A', damage: 3, crit: false });
+    // a real gap still hurts
+    expect(runMatch(base, other({ tbtMs: 2000 })).rounds[4]).toMatchObject({ attacker: 'A', damage: 28, crit: true });
+    expect(runMatch({ ...base, cls: 0.05 }, other({ cls: 0.15 })).rounds[5]).toMatchObject({ attacker: 'A', damage: 8, crit: false });
+    expect(runMatch(base, other({ cls: 0.5 })).rounds[5]).toMatchObject({ attacker: 'A', damage: 25, crit: true });
   });
 
-  it('a large gap on TBT or CLS still hits critically', () => {
-    const base = site('a.example', 80, 2000, 1_000_000, 50, 0, 0);
-    const result = runMatch(base, { ...base, hostname: 'b.example', tbtMs: 2000, cls: 0.5 });
-    // advantage is 1 in both rounds: 25 x 1.25 = 31.25, the largest possible hit
-    expect(result.rounds[4]).toMatchObject({ attacker: 'A', damage: 31, crit: true });
-    expect(result.rounds[5]).toMatchObject({ attacker: 'A', damage: 31, crit: true });
+  it('a site with no blocking beats one just over the threshold only by the minimum damage', () => {
+    const a = site('alessia.example', 74, 6600, 16_900_000, 41, 0, 0.004);
+    const b = site('giglio.example', 94, 1700, 1_100_000, 54, 202, 0);
+    const result = runMatch(a, b);
+    expect(result.rounds.map((r) => r.attacker)).toEqual(['B', 'B', 'B', 'A', 'A', null]);
+    expect(result.rounds[4]?.damage).toBe(3);
+    expect(result.rounds.at(-1)?.energyAfter).toEqual({ A: 43, B: 91 });
+    expect(result.winner).toBe('B');
   });
 
   it('handles one block round mixed with normal rounds', () => {

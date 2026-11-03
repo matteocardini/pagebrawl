@@ -57,8 +57,9 @@ The better value in a round wins it and hits the other fighter. The bigger the g
 - Reach 0 energy and it is a **K.O.**: the match ends on the spot (the earliest possible K.O. is round 4).
 - Otherwise the fighter with more energy wins on **decision**; ties go to the higher performance score, and a
   perfect tie is a **draw**.
-- TBT and CLS sit near zero on good sites, so their gaps are measured against Lighthouse's "good" thresholds
-  (200 ms and 0.1): 10 ms vs 20 ms of blocking time is a scratch, not a knockout.
+- TBT and CLS sit near zero on good sites, so anything at or under Lighthouse's "good" threshold (200 ms and 0.1)
+  counts as equal to the threshold: 10 ms vs 20 ms of blocking time is a block, and 0 ms vs 202 ms is a scratch,
+  not a knockout.
 
 The exact formulas and five worked examples live in [`docs/GAME_RULES.md`](docs/GAME_RULES.md); each example is a
 unit test.

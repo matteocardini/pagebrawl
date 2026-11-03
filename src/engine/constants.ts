@@ -13,8 +13,9 @@ export type RoundDefinition = {
   /** Which direction wins the round. */
   better: 'higher' | 'lower';
   /**
-   * Advantage is |x - y| / max(x, y, floor). A floor above 0 stops tiny absolute differences on metrics that
-   * are near zero (TBT, CLS) from counting as huge relative gaps. It is Lighthouse's "good" threshold.
+   * Values are clamped up to the floor before they are compared: anything at or under it counts as equal to it.
+   * A floor above 0 stops tiny absolute differences on metrics that sit near zero (TBT, CLS) from counting as
+   * huge relative gaps. It is Lighthouse's "good" threshold.
    */
   floor: number;
 };
