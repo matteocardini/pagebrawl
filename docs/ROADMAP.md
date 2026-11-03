@@ -19,13 +19,13 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 - [x] `src/data/fixtures.ts` with the four fixtures and the stable-hash mapping from hostname
 
 ## M2 — 2D view (branch `m2-view-2d`)
-- [ ] `use-match.ts` and `use-playback.ts` as described in `docs/ARCHITECTURE.md`
-- [ ] `UrlForm` (two inputs, "FIGHT!" button, client-side URL normalisation, validation messages), `ErrorMessage`
-- [ ] `fetch-metrics.ts` in mock mode (artificial 1500 ms delay with a themed loading screen)
-- [ ] `View2D`: energy bars, fighter names, move labels, damage numbers, crit styling, K.O. banner, finish banner with winner
-- [ ] Rematch and Skip buttons; speed toggle (1×/2×)
-- [ ] Responsive down to 360 px; reduced-motion respected; focus states visible
-- [ ] A complete match can be played end-to-end in the browser with mock data
+- [x] `use-match.ts` and `use-playback.ts` as described in `docs/ARCHITECTURE.md`
+- [x] `UrlForm` (two inputs, "FIGHT!" button, client-side URL normalisation, validation messages), `ErrorMessage`
+- [x] `fetch-metrics.ts` in mock mode (artificial 1500 ms delay with a themed loading screen)
+- [x] `View2D`: energy bars, fighter names, move labels, damage numbers, crit styling, K.O. banner, finish banner with winner
+- [x] Rematch and Skip buttons; speed toggle (1×/2×)
+- [x] Responsive down to 360 px; reduced-motion respected; focus states visible
+- [x] A complete match can be played end-to-end in the browser with mock data
 
 ## M3 — Toggle + empty 3D scene (branch `m3-toggle-3d`)
 - [ ] `ViewToggle` (2D / 3D, `aria-pressed`, persisted in `localStorage` with try/catch)
