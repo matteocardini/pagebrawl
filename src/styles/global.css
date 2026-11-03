@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-ui);
+  background:
+    radial-gradient(60% 50% at 15% 0%, rgb(124 58 237 / 0.28), transparent 70%),
+    radial-gradient(50% 40% at 90% 100%, rgb(34 211 238 / 0.18), transparent 70%),
+    radial-gradient(rgb(139 147 201 / 0.12) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(160deg, var(--bg), var(--bg-2));
+  background-attachment: fixed;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 2px;
+}

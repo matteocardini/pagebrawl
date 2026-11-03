@@ -4,13 +4,13 @@ Work **one milestone at a time**. Tick the boxes as you complete them. At the en
 `npm run typecheck && npm run lint && npm run test && npm run build`, then stop and summarise.
 
 ## M0 — Scaffold
-- [ ] Vite + React + TypeScript (strict) project created in the repo root (keep the existing `docs/`, `CLAUDE.md`, `README.md`, `LICENSE`, `.gitignore`, `.env.example`)
-- [ ] Dependencies installed: `three`, `@react-three/fiber`, `@react-three/drei`, `@fontsource/press-start-2p`; dev: `vitest`, `eslint` (+ TS/React plugins), `@types/three`, `@vercel/node`
-- [ ] npm scripts exactly as listed in `CLAUDE.md`
-- [ ] Folder structure from `docs/ARCHITECTURE.md` created (empty modules with a short header comment are fine)
-- [ ] `src/styles/tokens.css` with the palette; app shows a dark placeholder screen with the title "PAGE BRAWL" in the pixel font
-- [ ] `vercel.json` with the function `maxDuration`
-- [ ] First commit pushed to `main`
+- [x] Vite + React + TypeScript (strict) project created in the repo root (keep the existing `docs/`, `CLAUDE.md`, `README.md`, `LICENSE`, `.gitignore`, `.env.example`)
+- [x] Dependencies installed: `three`, `@react-three/fiber`, `@react-three/drei`, `@fontsource/press-start-2p`; dev: `vitest`, `eslint` (+ TS/React plugins), `@types/three`, `@vercel/node`
+- [x] npm scripts exactly as listed in `CLAUDE.md`
+- [x] Folder structure from `docs/ARCHITECTURE.md` created (empty modules with a short header comment are fine)
+- [x] `src/styles/tokens.css` with the palette; app shows a dark placeholder screen with the title "PAGE BRAWL" in the pixel font
+- [x] `vercel.json` with the function `maxDuration`
+- [ ] First commit pushed to `main` (committed locally; push left to the owner)
 
 ## M1 — Engine (branch `m1-engine`)
 - [ ] `src/engine/types.ts`, `constants.ts`, `run-match.ts` implementing `docs/GAME_RULES.md` exactly
