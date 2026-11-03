@@ -295,3 +295,13 @@
 .loading__slow {
   color: var(--cyan);
 }
+
+.app__demo {
+  display: inline-block;
+  margin: 0.75rem 0 0;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--bg);
+  background: var(--pink);
+  border-radius: 4px;
+}

@@ -5,7 +5,8 @@ export const MOCK_DELAY_MS = 1500;
 
 export class FetchMetricsError extends Error {}
 
-const useMock = import.meta.env.VITE_USE_MOCK !== 'false';
+/** Fixtures are used only when explicitly asked for; anything else (including unset) means real data. */
+export const USING_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
 
 const ERROR_MESSAGES: Record<string, string> = {
   invalid_url: "That address doesn't look right. Check it and try again.",
@@ -50,7 +51,7 @@ export async function fetchFromApi(url: string, fetchImpl: typeof fetch = fetch)
 
 /** Loads the metrics of one normalised URL: fixtures in mock mode, the real API otherwise. */
 export async function fetchMetrics(url: string, delayMs = MOCK_DELAY_MS): Promise<SiteMetrics> {
-  if (!useMock) return fetchFromApi(url);
+  if (!USING_MOCK) return fetchFromApi(url);
   await wait(delayMs);
   return fixtureFor(url, new URL(url).hostname);
 }

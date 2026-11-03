@@ -4,6 +4,7 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { MatchScreen } from './components/MatchScreen';
 import { UrlForm } from './components/UrlForm';
 import { ViewToggle } from './components/ViewToggle';
+import { USING_MOCK } from './data/fetch-metrics';
 import { normalizeUrl } from './data/normalize-url';
 import { parseChallengeParams } from './state/challenge-link';
 import { useMatch } from './state/use-match';
@@ -29,6 +30,9 @@ export function App() {
       <header className="app__header">
         <h1 className="app__title">PAGE BRAWL</h1>
         <p className="app__tagline">Two websites enter. One leaves faster.</p>
+        {USING_MOCK && (
+          <p className="app__demo">Demo mode: the numbers are fake fixtures, not real PageSpeed results.</p>
+        )}
       </header>
 
       <ViewToggle mode={mode} webgl={webgl} onChange={setMode} />

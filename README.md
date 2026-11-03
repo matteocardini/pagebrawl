@@ -177,7 +177,7 @@ More detail: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) (structure, API cont
 
 1. Import the repository in Vercel (framework preset **Vite**, build command `npm run build`, output `dist`).
 2. In *Project Settings → Environment Variables* add `PSI_API_KEY` (server only, **no** `VITE_` prefix). Leave
-   `VITE_USE_MOCK` unset, or `false`, in production.
+   `VITE_USE_MOCK` unset (or `false`) in production: only the exact value `true` switches to fake data.
 3. Deploy. `vercel.json` sets the `/api/analyze` function to a 60 s `maxDuration`. If your plan caps it lower,
    lower it too (the function itself gives up after 55 s).
 4. In `index.html`, replace the placeholder domain `page-brawl.vercel.app` (`og:url`, `og:image`,
